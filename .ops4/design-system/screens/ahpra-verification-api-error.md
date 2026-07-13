@@ -1,21 +1,20 @@
 # Screen blueprint: AHPRA Verification API Error
 
 Route: `/doctors/:id/verify`
+Purpose: Show if API check fails.
 Layout: **single-column-form**
 
 ## Required regions
-- **panel**: AHPRA verification error and manual fallback — components: APIErrorAlert, ManualVerificationButton, RetryButton
+- **panel**: Error and status messages
+- **footer**: Action controls
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌───────────────┐
-| [API Error]   |
-| [Manual Btn]  |
-| [Retry]       |
-└───────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
