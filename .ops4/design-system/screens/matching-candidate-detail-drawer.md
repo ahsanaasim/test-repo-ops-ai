@@ -1,18 +1,22 @@
 # Screen blueprint: Matching Candidate Detail Drawer
 
 Route: `/matching/:candidateId`
+Purpose: Quick view of candidate details from matching list.
 Layout: **drawer**
 
 ## Required regions
-- **drawer-header**: Candidate summary and close — components: CandidateName, CloseButton
-- **drawer-content**: Candidate actionable summary — components: Specialty, Location, AHPRAStatusBadge, AIConfidenceScore, MatchRationale, ContactActions, AssignToBriefAction, ViewFullProfileLink
+- **drawer-header**: Candidate identity and close action
+- **drawer-main**: Candidate core details and match info
+- **drawer-footer**: Candidate actions
+- **drawer-status**: Status overlays (loading, error, plan, permission, empty)
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-| main | candidate drawer |
+| main | context-rail |
 ```
 
 ## Acceptance
