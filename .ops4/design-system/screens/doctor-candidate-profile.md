@@ -1,19 +1,20 @@
 # Screen blueprint: Doctor Candidate Profile
 
 Route: `/doctors/:id`
-Layout: **master-detail**
+Purpose: Full candidate view: data, documents, AHPRA status, communication, follow-ups, timeline.
+Layout: **two-column-main-rail**
 
 ## Required regions
-- **main**: Candidate profile header and tabbed content — components: CandidateHeaderCard, CandidateName, Specialty, Location, AHPRAStatusBadge, EmploymentType, Availability, EditProfileAction, Tabs: Profile|Documents|Timeline|Follow-Ups
-- **tab-content**: Tab-specific content: profile data, docs, timeline, follow-ups — components: ProfileFieldsPanel, DocumentsList, AHPRAStatusPanel, VerificationSource, VerificationDate, SupportingDocsList, VerificationNotes, CommunicationLog, FollowUpTaskList, AddFollowUpTaskAction, ActivityTimeline, EmptyTimelineMessage
-- **state-variant**: Display skeletons, error, plan limit, or permission denied messages as overlays or in main region. — components: ProfileSkeleton, TabSkeletons, ErrorMessage, RetryAction, PlanLimitMessage, UpgradePlanAction, PermissionDeniedMessage
+- **main**: Candidate profile details and tabbed content
+- **context-rail**: Quick actions, status, and meta info
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-| candidate header | tab content |
+| main | context-rail |
 ```
 
 ## Acceptance
