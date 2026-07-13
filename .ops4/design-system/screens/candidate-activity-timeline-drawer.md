@@ -1,18 +1,20 @@
 # Screen blueprint: Candidate Activity Timeline Drawer
 
 Route: `/doctors/:id/timeline`
-Layout: **drawer**
+Purpose: Show chronological log of all candidate activity.
+Layout: **drawer-panel**
 
 ## Required regions
-- **filters**: Filter and search activity timeline — components: SearchActivityInput, ActivityTypeSelect, DateRangePicker, UserSelect
-- **timeline-list**: Chronological activity log — components: ActivityTimestamp, ActivityType, ActivityDescription, PerformedBy, LinkedBrief, LinkedCommunication, StatusChangeBadge, AHPRAStatusBadge, NoteContent, AttachmentIcon, AIGeneratedNoteBadge, DownloadActivityLog
+- **drawer-header**: Timeline filters and close action
+- **drawer-content**: Timeline event list and details
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-| main | timeline drawer (filters + log) |
+| main | context-rail |
 ```
 
 ## Acceptance
