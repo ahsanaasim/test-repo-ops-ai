@@ -683,6 +683,10 @@ The following automatically fail validation.
 
 • Sheet/Drawer breakpoint ignored (≥640 Sheet / &lt;640 Drawer)
 
+• Missing required region from `.ops4/design-system/screens/` blueprint (collapsed multi-region screen into a single Card/form)
+
+• Thin admin/CRUD scaffold where the locked build prompt specified production-grade multi-panel composition
+
 A screen with any blocker must never be considered complete.
 
 ---
