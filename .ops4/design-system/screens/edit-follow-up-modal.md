@@ -1,22 +1,20 @@
 # Screen blueprint: Edit Follow-Up Modal
 
 Route: `/follow-ups/:id/edit`
+Purpose: Edit follow-up task details.
 Layout: **single-column-form**
 
 ## Required regions
-- **form-panel**: Edit follow-up task details — components: DueDatePicker, PrioritySelect, StatusSelect, NotesTextarea, AssigneeSelect
-- **footer**: Form actions — components: SaveButton, CancelButton
+- **modal-form**: Edit follow-up task form
+- **modal-footer**: Form actions and status
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌───────────────┐
-| [Fields]      |
-|───────────────|
-| [Save][Cancel]|
-└───────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
