@@ -1,22 +1,20 @@
 # Screen blueprint: Add New Brief Modal
 
 Route: `/briefs/add`
+Purpose: Create a new client brief.
 Layout: **single-column-form**
 
 ## Required regions
-- **form**: Input fields for new brief — components: ClientNameInput, BriefTitleInput, RoleTypeSelect, SpecialtyInput, LocationInput, StartDatePicker, EndDatePicker, EmploymentTypeSelect, NumberOfPositionsInput, BriefDescriptionTextarea, RequirementsTextarea, NotesTextarea, AssignedRecruiterSelect
-- **footer**: Form actions — components: SaveBriefButton, CancelButton
+- **form**: Input fields for new brief
+- **footer**: Form actions
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌───────────────┐
-| [Add Fields]  |
-|───────────────|
-| [Save][Cancel]|
-└───────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
