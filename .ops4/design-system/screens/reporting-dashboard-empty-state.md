@@ -1,22 +1,21 @@
 # Screen blueprint: Reporting Dashboard Empty State
 
 Route: `/reporting`
+Purpose: Show when no data matches filters.
 Layout: **dashboard-grid**
 
 ## Required regions
-- **sidebar**: Navigation and workspace context — components: SidebarNav (role-aware, collapsible)
-- **topbar**: Page title, search, user menu — components: Breadcrumbs, PageTitle, SearchInput, UserAvatarMenu
-- **main**: Reporting dashboard widgets and content — components: ReportingFilters, ExportControls, EmptyStateIllustration, EmptyStateMessage, PermissionDeniedMessage
+- **dashboard-header**: Page title and banners (none visible in empty state)
+- **dashboard-filters-toolbar**: Filters and (disabled) export actions
+- **dashboard-metrics**: Empty state prompt
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌────sidebar────┬────────────dashboard grid────────────┐
-| [nav]        | [title][search][user]                |
-|              | [filters][empty illustration]         |
-└───────────────┴──────────────────────────────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
