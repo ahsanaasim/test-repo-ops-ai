@@ -1,18 +1,20 @@
 # Screen blueprint: Brief Activity Timeline Drawer
 
 Route: `/briefs/:id/timeline`
+Purpose: Show chronological log of all brief activity.
 Layout: **drawer**
 
 ## Required regions
-- **filters**: Filter and search activity timeline — components: SearchActivityInput, ActivityTypeSelect, DateRangePicker, UserSelect
-- **timeline-list**: Chronological activity log — components: ActivityTimestamp, ActivityType, ActivityDescription, PerformedBy, LinkedCandidate, LinkedCommunication, StatusChangeBadge, AHPRAStatusBadge, NoteContent, AttachmentIcon, AIGeneratedNoteBadge, DownloadActivityLog
+- **filters**: Filter and search activity timeline
+- **timeline-list**: Chronological activity log
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-| main | timeline drawer (filters + log) |
+| main | context-rail |
 ```
 
 ## Acceptance
