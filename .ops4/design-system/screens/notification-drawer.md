@@ -1,24 +1,21 @@
 # Screen blueprint: Notification Drawer
 
 Route: `/dashboard/notifications`
+Purpose: Show in-app notifications, alerts, and reminders.
 Layout: **drawer**
 
 ## Required regions
-- **drawer-header**: Drawer title, close button, and filters — components: DrawerTitle, DrawerCloseButton, NotificationTypeFilter, UnreadOnlyFilter
-- **drawer-content**: Scrollable notification list, grouped by date/type — components: NotificationGroupHeader, NotificationList, NotificationTypeBadge, NotificationTimestamp, NotificationContent, UnreadIndicator, MarkAsReadAction, GoToRelatedItemAction, NotificationTooltip
-- **drawer-status**: Status banners/messages for empty, error, plan limit, or permission denied states — components: EmptyStateMessage, ErrorMessage, RetryAction, PlanLimitMessage, PermissionDeniedMessage, NotificationListSkeleton
+- **drawer-header**: Drawer title, close button, and filters
+- **drawer-content**: Scrollable notification list, grouped by date/type
+- **drawer-status**: Status banners/messages for empty, error, plan limit, or permission denied states
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌─────────────main─────────────┬─notif drawer─┐
-|                             | [header]     |
-|                             | [filters]    |
-|                             | [notif list] |
-|                             | [status]     |
-└─────────────────────────────┴──────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
