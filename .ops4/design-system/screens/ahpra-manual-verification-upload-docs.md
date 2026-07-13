@@ -1,24 +1,21 @@
 # Screen blueprint: AHPRA Manual Verification: Upload Docs
 
 Route: `/doctors/:id/verify/manual-upload`
+Purpose: Upload supporting documents for manual verification.
 Layout: **single-column-form**
 
 ## Required regions
-- **panel**: Upload supporting documents for manual verification — components: UploadDocsField, DocsListPreview, RemoveDocAction, UploadProgressBar
-- **footer**: Form actions — components: ContinueButton, CancelButton
+- **header**: Wizard step navigation and candidate context
+- **panel**: Document upload and validation
+- **footer**: Wizard navigation actions
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌───────────────┐
-| [Upload Docs] |
-| [Docs List]   |
-| [Progress]    |
-|───────────────|
-| [Continue][Cancel] |
-└───────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
