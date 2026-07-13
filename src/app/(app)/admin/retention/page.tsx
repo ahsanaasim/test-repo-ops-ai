@@ -14,7 +14,9 @@ function RetentionContent() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <h1 className="text-2xl font-semibold tracking-tight">Data Retention & Deletion</h1>
-          <Badge variant="outline" className="text-amber-700 border-amber-200">Compliance Warning</Badge>
+          <Badge variant="outline" className="border-[color-mix(in_oklch,var(--status-warning)_40%,transparent)] text-[var(--status-warning)]">
+            Compliance warning
+          </Badge>
         </div>
         <div className="flex gap-2">
           <Button variant="destructive" size="sm">Bulk Delete</Button>

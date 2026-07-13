@@ -61,12 +61,14 @@ export function PageStates({
   if (state === "permission_denied") {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <Ban className="h-12 w-12 text-muted-foreground mb-4" />
-        <h3 className="text-lg font-medium">Permission Denied</h3>
-        <p className="text-sm text-muted-foreground mt-2 max-w-md">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+          <Ban className="h-6 w-6 text-muted-foreground" aria-hidden="true" />
+        </div>
+        <h3 className="text-lg font-medium">Permission denied</h3>
+        <p className="mt-2 max-w-md text-sm text-muted-foreground">
           You do not have permission to view this content. Contact your administrator if you believe this is an error.
         </p>
-        <LinkButton className="mt-6" href="/dashboard">Return to Dashboard</LinkButton>
+        <LinkButton className="mt-6" href="/dashboard">Return to dashboard</LinkButton>
       </div>
     );
   }
@@ -74,9 +76,11 @@ export function PageStates({
   if (state === "empty") {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <Inbox className="h-12 w-12 text-muted-foreground mb-4" />
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+          <Inbox className="h-6 w-6 text-muted-foreground" aria-hidden="true" />
+        </div>
         <h3 className="text-lg font-medium">{emptyTitle}</h3>
-        <p className="text-sm text-muted-foreground mt-2 max-w-md">{emptyDescription}</p>
+        <p className="mt-2 max-w-md text-sm text-muted-foreground">{emptyDescription}</p>
         {emptyAction && (
           emptyAction.href ? (
             <LinkButton className="mt-6" href={emptyAction.href}>{emptyAction.label}</LinkButton>
@@ -93,13 +97,13 @@ export function PageStates({
 
 export function PlanLimitBanner() {
   return (
-    <Alert className="mb-6 border-amber-200 bg-amber-50">
-      <Crown className="h-4 w-4 text-amber-600" />
-      <AlertTitle className="text-amber-800">Plan Limit Reached</AlertTitle>
-      <AlertDescription className="flex items-center justify-between text-amber-700">
+    <Alert className="mb-6 border-[color-mix(in_oklch,var(--status-warning)_30%,transparent)] bg-[color-mix(in_oklch,var(--status-warning)_8%,var(--bg-surface))]">
+      <Crown className="h-4 w-4 text-[var(--status-warning)]" />
+      <AlertTitle className="text-foreground">Plan limit reached</AlertTitle>
+      <AlertDescription className="flex items-center justify-between gap-4 text-muted-foreground">
         <span>You have reached your plan limit. Upgrade to unlock more features.</span>
-        <Button variant="outline" size="sm" className="ml-4 shrink-0">
-          Upgrade Plan
+        <Button variant="outline" size="sm" className="shrink-0">
+          Upgrade plan
         </Button>
       </AlertDescription>
     </Alert>

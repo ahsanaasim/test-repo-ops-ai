@@ -58,7 +58,7 @@ export function Topbar({ onMenuClick, title }: TopbarProps) {
   const navItems = getNavItems(user.role);
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 lg:px-6">
+    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b border-border bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/80 lg:px-6">
       <Button
         variant="ghost"
         size="icon"
@@ -70,7 +70,7 @@ export function Topbar({ onMenuClick, title }: TopbarProps) {
       </Button>
 
       <div className="flex flex-1 flex-col gap-0.5 min-w-0">
-        <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-xs text-muted-foreground">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-xs uppercase tracking-wide text-muted-foreground">
           {breadcrumbs.map((crumb, i) => (
             <span key={i} className="flex items-center gap-1">
               {i > 0 && <ChevronRight className="h-3 w-3" />}

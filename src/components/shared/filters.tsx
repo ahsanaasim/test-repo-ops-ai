@@ -18,7 +18,7 @@ interface FilterBarProps {
 
 export function FilterBar({ children }: FilterBarProps) {
   return (
-    <div className="flex flex-wrap items-end gap-4 mb-6 p-4 rounded-lg border bg-card shadow-sm">
+    <div className="mb-6 flex flex-wrap items-end gap-4 rounded-lg border border-border bg-card p-4 shadow-sm">
       {children}
     </div>
   );

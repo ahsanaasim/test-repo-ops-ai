@@ -42,7 +42,7 @@ function LoginForm() {
 
         <form className="space-y-4 rounded-lg border bg-card p-6 shadow-sm">
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">Email address</Label>
             <Input
               id="email"
               type="email"
