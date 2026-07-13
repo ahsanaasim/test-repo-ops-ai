@@ -119,7 +119,7 @@ export function Topbar({ onMenuClick, title }: TopbarProps) {
             <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
               <Bell className="h-5 w-5" />
               {unreadCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-indigo-600 text-[10px] font-medium text-white">
+                <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
                   {unreadCount}
                 </span>
               )}
@@ -134,14 +134,14 @@ export function Topbar({ onMenuClick, title }: TopbarProps) {
                 {notifications.map((n) => (
                   <div
                     key={n.id}
-                    className={`rounded-lg border p-3 ${!n.read ? "bg-indigo-50/50 border-indigo-100" : ""}`}
+                    className={`rounded-lg border p-3 ${!n.read ? "bg-primary/5 border-primary/20" : ""}`}
                   >
                     <div className="flex items-start justify-between gap-2">
                       <Badge variant="outline" className="text-xs capitalize">
                         {n.type}
                       </Badge>
                       {!n.read && (
-                        <span className="h-2 w-2 rounded-full bg-indigo-600" aria-label="Unread" />
+                        <span className="h-2 w-2 rounded-full bg-primary" aria-label="Unread" />
                       )}
                     </div>
                     <p className="text-sm mt-2">{n.content}</p>
@@ -163,7 +163,7 @@ export function Topbar({ onMenuClick, title }: TopbarProps) {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Button variant="ghost" size="sm" className="gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-medium">
                 {user.name.split(" ").map((n) => n[0]).join("")}
               </div>
               <span className="hidden md:inline text-sm">{user.name}</span>

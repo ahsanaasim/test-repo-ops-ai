@@ -37,10 +37,10 @@ function NotificationsContent() {
       >
         <div className="space-y-3">
           {notifications.map((n) => (
-            <div key={n.id} className={`rounded-lg border p-4 shadow-sm ${!n.read ? "border-indigo-200 bg-indigo-50/30" : "bg-card"}`}>
+            <div key={n.id} className={`rounded-lg border p-4 shadow-sm ${!n.read ? "border-primary/20 bg-primary/5" : "bg-card"}`}>
               <div className="flex items-start justify-between">
                 <Badge variant="outline" className="capitalize">{n.type}</Badge>
-                {!n.read && <span className="h-2 w-2 rounded-full bg-indigo-600" aria-label="Unread" />}
+                {!n.read && <span className="h-2 w-2 rounded-full bg-primary" aria-label="Unread" />}
               </div>
               <p className="text-sm mt-2">{n.content}</p>
               <p className="text-xs text-muted-foreground mt-1">{new Date(n.timestamp).toLocaleString()}</p>
