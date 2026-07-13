@@ -1,26 +1,21 @@
 # Screen blueprint: CV Upload Wizard: Upload Loading
 
 Route: `/doctors/add/cv-upload`
+Purpose: Show while file uploads.
 Layout: **single-column-form**
 
 ## Required regions
-- **header**: Wizard navigation and context — components: StepIndicator, PageTitle
-- **panel**: File upload progress — components: UploadArea, ProgressBar, FileNamePreview
-- **footer**: Secondary action — components: CancelButton
+- **header**: Wizard navigation and context
+- **panel**: File upload progress
+- **footer**: Secondary action
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌───────────────┐
-| [Step][Title] |
-| [UploadArea]  |
-| [Progress]    |
-| [File Info]   |
-|───────────────|
-| [Cancel]      |
-└───────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
