@@ -1,22 +1,20 @@
 # Screen blueprint: Admin Area
 
 Route: `/admin`
-Layout: **dashboard-grid**
+Purpose: Manage users, roles, permissions, audit logs, data retention.
+Layout: **two-column-main-rail**
 
 ## Required regions
-- **sidebar**: Navigation and workspace context — components: SidebarNav (admin only, collapsible)
-- **topbar**: Page title, search, user menu — components: Breadcrumbs, PageTitle, SearchInput, UserAvatarMenu
-- **main**: Admin widgets and content — components: UserManagementPanel, RoleManagementPanel, AuditLogTable, DataRetentionSettings, SystemSettingsPanel, AdminEmptyStateIllustration, AdminErrorAlert, AdminLoadingSkeleton, PermissionDeniedMessage
+- **admin-tabs-header**: Tab navigation for admin sections
+- **admin-main-panel**: Main content area for selected tab
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌────sidebar────┬────────────admin grid───────────────┐
-| [nav]        | [title][search][user]               |
-|              | [admin panels/widgets]              |
-└───────────────┴────────────────────────────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
