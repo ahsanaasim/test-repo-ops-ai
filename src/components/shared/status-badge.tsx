@@ -34,6 +34,8 @@ const variants: Record<string, string> = {
   urgent: errorBadge,
   completed: successBadge,
   overdue: errorBadge,
+  granted: successBadge,
+  revoked: errorBadge,
 };
 
 export function StatusBadge({ status, className }: { status: string; className?: string }) {

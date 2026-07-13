@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { PlanLimitBanner } from "@/components/shared/page-states";
+import { PlatformLogo } from "@/components/shared/platform-logo";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { parsePageState } from "@/lib/page-state";
 
@@ -23,6 +24,9 @@ function LoginForm() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <div className="w-full max-w-md space-y-6">
+        <div className="flex justify-center">
+          <PlatformLogo />
+        </div>
         <div className="text-center">
           <h1 className="text-2xl font-semibold tracking-tight">Sign in to RecruitMed</h1>
           <p className="text-sm text-muted-foreground mt-2">Medical recruitment platform</p>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -12,10 +12,10 @@ import {
   Settings,
   User,
 } from "lucide-react";
-import { getBreadcrumbs } from "@/lib/navigation";
+import { getBreadcrumbs, getNavItems } from "@/lib/navigation";
 import { useUser } from "@/context/user-context";
-import { notifications } from "@/lib/sample-data";
-import { Button } from "@/components/ui/button"
+import { notifications as allNotifications } from "@/lib/sample-data";
+import { Button } from "@/components/ui/button";
 import { LinkButton } from "@/components/ui/link-button";
 import {
   DropdownMenu,
@@ -33,7 +33,6 @@ import {
 } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import {
   CommandDialog,
   CommandEmpty,
@@ -42,20 +41,48 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { getNavItems } from "@/lib/navigation";
+import { MultiSelectFilter, ToggleFilter } from "@/components/shared/filters";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import type { Notification } from "@/lib/types";
 
 interface TopbarProps {
   onMenuClick: () => void;
   title?: string;
 }
 
+function groupNotifications(items: Notification[]) {
+  const groups: Record<string, Notification[]> = {};
+  for (const n of items) {
+    const date = new Date(n.timestamp).toLocaleDateString();
+    groups[date] = groups[date] ?? [];
+    groups[date].push(n);
+  }
+  return Object.entries(groups);
+}
+
 export function Topbar({ onMenuClick, title }: TopbarProps) {
   const pathname = usePathname();
   const { user } = useUser();
   const [searchOpen, setSearchOpen] = useState(false);
+  const [items, setItems] = useState(allNotifications);
+  const [typeFilter, setTypeFilter] = useState<string[]>([]);
+  const [unreadOnly, setUnreadOnly] = useState(false);
   const breadcrumbs = getBreadcrumbs(pathname);
-  const unreadCount = notifications.filter((n) => !n.read).length;
+  const unreadCount = items.filter((n) => !n.read).length;
   const navItems = getNavItems(user.role);
+  const overdueCount = 1;
+
+  const filtered = useMemo(() => {
+    return items.filter((n) => {
+      if (unreadOnly && n.read) return false;
+      if (typeFilter.length > 0 && !typeFilter.includes(n.type)) return false;
+      return true;
+    });
+  }, [items, typeFilter, unreadOnly]);
+
+  const markRead = (id: string) => {
+    setItems((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
+  };
 
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b border-border bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/80 lg:px-6">
@@ -70,7 +97,10 @@ export function Topbar({ onMenuClick, title }: TopbarProps) {
       </Button>
 
       <div className="flex flex-1 flex-col gap-0.5 min-w-0">
-        <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-xs uppercase tracking-wide text-muted-foreground">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-1 text-xs uppercase tracking-wide text-muted-foreground"
+        >
           {breadcrumbs.map((crumb, i) => (
             <span key={i} className="flex items-center gap-1">
               {i > 0 && <ChevronRight className="h-3 w-3" />}
@@ -86,12 +116,16 @@ export function Topbar({ onMenuClick, title }: TopbarProps) {
             </span>
           ))}
         </nav>
-        {title && (
-          <h1 className="text-2xl font-semibold tracking-tight truncate">{title}</h1>
-        )}
+        {title && <h1 className="text-2xl font-semibold tracking-tight truncate">{title}</h1>}
       </div>
 
       <div className="flex items-center gap-2">
+        {overdueCount > 0 && (
+          <Badge variant="outline" className="hidden sm:flex text-xs text-[var(--status-warning)]">
+            {overdueCount} overdue
+          </Badge>
+        )}
+
         <Button
           variant="outline"
           size="sm"
@@ -129,33 +163,75 @@ export function Topbar({ onMenuClick, title }: TopbarProps) {
             <SheetHeader>
               <SheetTitle>Notifications</SheetTitle>
             </SheetHeader>
-            <ScrollArea className="h-[calc(100vh-8rem)] mt-4">
-              <div className="space-y-3 pr-4">
-                {notifications.map((n) => (
-                  <div
-                    key={n.id}
-                    className={`rounded-lg border p-3 ${!n.read ? "bg-primary/5 border-primary/20" : ""}`}
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <Badge variant="outline" className="text-xs capitalize">
-                        {n.type}
-                      </Badge>
-                      {!n.read && (
-                        <span className="h-2 w-2 rounded-full bg-primary" aria-label="Unread" />
-                      )}
+            <div className="mt-4 flex flex-wrap gap-3 border-b pb-4">
+              <MultiSelectFilter
+                label="Type"
+                options={[
+                  { value: "task", label: "Task" },
+                  { value: "brief", label: "Brief" },
+                  { value: "verification", label: "Verification" },
+                  { value: "outreach", label: "Outreach" },
+                  { value: "system", label: "System" },
+                ]}
+                values={typeFilter}
+                onChange={setTypeFilter}
+              />
+              <ToggleFilter label="Unread only" checked={unreadOnly} onChange={setUnreadOnly} />
+            </div>
+            <ScrollArea className="h-[calc(100vh-14rem)] mt-4">
+              {filtered.length === 0 ? (
+                <p className="text-sm text-muted-foreground py-8 text-center">No notifications</p>
+              ) : (
+                <div className="space-y-4 pr-4">
+                  {groupNotifications(filtered).map(([date, group]) => (
+                    <div key={date}>
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2">
+                        {date}
+                      </p>
+                      <div className="space-y-3">
+                        {group.map((n) => (
+                          <div
+                            key={n.id}
+                            className={`rounded-lg border p-3 ${!n.read ? "bg-primary/5 border-primary/20" : ""}`}
+                          >
+                            <div className="flex items-start justify-between gap-2">
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <Badge variant="outline" className="text-xs capitalize">
+                                    {n.type}
+                                  </Badge>
+                                </TooltipTrigger>
+                                <TooltipContent>{n.content}</TooltipContent>
+                              </Tooltip>
+                              {!n.read && (
+                                <span className="h-2 w-2 rounded-full bg-primary" aria-label="Unread" />
+                              )}
+                            </div>
+                            <p className="text-sm mt-2">{n.content}</p>
+                            <div className="flex items-center justify-between mt-2 gap-2">
+                              <span className="text-xs text-muted-foreground">
+                                {new Date(n.timestamp).toLocaleString()}
+                              </span>
+                              <div className="flex gap-2">
+                                {!n.read && (
+                                  <Button variant="ghost" size="sm" className="h-auto p-0 text-xs" onClick={() => markRead(n.id)}>
+                                    Mark read
+                                  </Button>
+                                )}
+                                {n.relatedUrl && (
+                                  <LinkButton variant="link" size="sm" className="h-auto p-0" href={n.relatedUrl}>
+                                    View
+                                  </LinkButton>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <p className="text-sm mt-2">{n.content}</p>
-                    <div className="flex items-center justify-between mt-2">
-                      <span className="text-xs text-muted-foreground">
-                        {new Date(n.timestamp).toLocaleString()}
-                      </span>
-                      {n.relatedUrl && (
-                        <LinkButton variant="link" size="sm" className="h-auto p-0" href={n.relatedUrl}>View</LinkButton>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </ScrollArea>
           </SheetContent>
         </Sheet>
@@ -164,7 +240,10 @@ export function Topbar({ onMenuClick, title }: TopbarProps) {
           <DropdownMenuTrigger>
             <Button variant="ghost" size="sm" className="gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-medium">
-                {user.name.split(" ").map((n) => n[0]).join("")}
+                {user.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
               </div>
               <span className="hidden md:inline text-sm">{user.name}</span>
             </Button>
@@ -200,7 +279,13 @@ export function Topbar({ onMenuClick, title }: TopbarProps) {
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Pages">
             {navItems.map((item) => (
-              <CommandItem key={item.href} onSelect={() => { window.location.href = item.href; setSearchOpen(false); }}>
+              <CommandItem
+                key={item.href}
+                onSelect={() => {
+                  window.location.href = item.href;
+                  setSearchOpen(false);
+                }}
+              >
                 {item.label}
               </CommandItem>
             ))}

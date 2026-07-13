@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { PlanLimitBanner } from "@/components/shared/page-states";
+import { PlatformLogo } from "@/components/shared/platform-logo";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { parsePageState } from "@/lib/page-state";
 
@@ -18,6 +19,8 @@ function RegisterForm() {
   const state = parsePageState(Object.fromEntries(searchParams.entries()));
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -25,6 +28,9 @@ function RegisterForm() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <div className="w-full max-w-md space-y-6">
+        <div className="flex justify-center">
+          <PlatformLogo />
+        </div>
         <div className="text-center">
           <h1 className="text-2xl font-semibold tracking-tight">Create your account</h1>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -49,6 +55,29 @@ function RegisterForm() {
         )}
 
         <form className="space-y-4 rounded-lg border bg-card p-6 shadow-sm">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="first-name">First name</Label>
+              <Input
+                id="first-name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+                disabled={state === "loading"}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="last-name">Last name</Label>
+              <Input
+                id="last-name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+                disabled={state === "loading"}
+              />
+            </div>
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="email">Email address</Label>
             <Input
@@ -133,7 +162,7 @@ function RegisterForm() {
               </LinkButton>
             )}
             <LinkButton className="w-full" variant="secondary" href="/login">
-              Back to login
+              Cancel
             </LinkButton>
           </div>
         </form>
