@@ -1,18 +1,20 @@
 # Screen blueprint: CV Upload Wizard: Duplicate Detection
 
 Route: `/doctors/add/duplicates`
+Purpose: Review potential duplicate candidates.
 Layout: **two-column-main-rail**
 
 ## Required regions
-- **main**: Duplicate candidates review and resolution — components: DuplicateCandidatesList, DuplicateResolutionActions, ContinueButton, CancelButton
-- **rail**: Selected duplicate candidate detail — components: CandidateDetailCard
+- **main**: Display duplicate candidates table or empty/error/loading/plan/permission state.
+- **footer**: Primary actions for resolving duplicates or continuing.
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-| duplicates list | candidate detail |
+| main | context-rail |
 ```
 
 ## Acceptance
