@@ -1,20 +1,21 @@
 # Screen blueprint: Send Outreach Confirmation Modal
 
 Route: `/outreach/send-confirm`
+Purpose: Confirm send now or save as draft.
 Layout: **single-column-form**
 
 ## Required regions
-- **modal-panel**: Confirm send now or save as draft — components: ConsentCheckSummary, SendNowButton, SaveAsDraftButton, CancelButton
+- **modal-header**: Title and cancel action
+- **modal-body**: Confirmation details and consent
+- **modal-footer**: Primary actions
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌───────────────┐
-| [Consent]     |
-| [Send][Draft][Cancel] |
-└───────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
