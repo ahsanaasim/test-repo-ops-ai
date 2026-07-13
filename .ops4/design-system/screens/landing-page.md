@@ -1,22 +1,20 @@
 # Screen blueprint: Landing Page
 
 Route: `/`
-Layout: **single-column-form**
+Purpose: Public entry point introducing the healthcare recruitment platform, with links to login and registration.
+Layout: **two-column-main-rail**
 
 ## Required regions
-- **hero-panel**: Public entry point introducing the platform — components: PlatformLogo, HeroTitle, HeroDescription, LoginButton, RegisterButton
+- **main**: Public entry point introducing the healthcare recruitment platform, with links to login and registration. — components: PageHeader, PrimaryContent
+- **context-rail**: Related context, history, or secondary actions — components: RelatedInfo, ActivityOrMeta
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌───────────────┐
-| [Logo]        |
-| [HeroTitle]   |
-| [Desc]        |
-| [Login][Reg]  |
-└───────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
