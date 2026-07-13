@@ -1,23 +1,20 @@
 # Screen blueprint: Password Reset Request
 
 Route: `/login/reset`
+Purpose: Request password reset link.
 Layout: **single-column-form**
 
 ## Required regions
-- **panel**: Main modal content for password reset request — components: PasswordResetInstructions, EmailInput
-- **footer**: Action buttons for modal — components: SubmitButton, CancelButton
+- **panel**: Main modal content for password reset request
+- **footer**: Action buttons for modal
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌───────────────┐
-| [Instructions]|
-| [Email]       |
-|───────────────|
-| [Submit][Cancel] |
-└───────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
