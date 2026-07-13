@@ -56,7 +56,7 @@ function ReportingContent() {
           {metrics.map((m) => (
             <Card key={m.label} className="shadow-sm">
               <CardHeader className="pb-2"><CardTitle className="text-sm font-medium text-muted-foreground">{m.label}</CardTitle></CardHeader>
-              <CardContent><p className="text-3xl font-semibold" style={{ color: "hsl(243 75% 59%)" }}>{m.value}</p></CardContent>
+              <CardContent><p className="text-3xl font-semibold text-primary">{m.value}</p></CardContent>
             </Card>
           ))}
         </div>
@@ -68,8 +68,8 @@ function ReportingContent() {
               <CardContent>
                 <div className="h-40 flex items-end gap-2">
                   {[40, 65, 45, 80, 55, 70].map((h, i) => (
-                    <div key={i} className="flex-1 rounded-t bg-indigo-100" style={{ height: `${h}%`, backgroundColor: "hsl(243 75% 59% / 0.2)" }}>
-                      <div className="w-full rounded-t" style={{ height: "100%", backgroundColor: "hsl(243 75% 59% / 0.6)" }} />
+                    <div key={i} className="flex-1 rounded-t bg-primary/20" style={{ height: `${h}%` }}>
+                      <div className="h-full w-full rounded-t bg-primary/60" />
                     </div>
                   ))}
                 </div>

@@ -28,7 +28,7 @@ function DoctorProfileContent() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex gap-4">
           <Avatar className="h-16 w-16">
-            <AvatarFallback className="text-lg bg-indigo-100 text-indigo-700">
+            <AvatarFallback className="text-lg bg-primary/10 text-primary">
               {doctor.firstName[0]}{doctor.lastName[0]}
             </AvatarFallback>
           </Avatar>

@@ -61,11 +61,11 @@ function DashboardContent() {
           <Card className="shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <Briefcase className="h-4 w-4 text-indigo-600" /> Assigned Briefs
+                <Briefcase className="h-4 w-4 text-primary" /> Assigned Briefs
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-semibold" style={{ color: "hsl(243 75% 59%)" }}>{briefs.length}</p>
+              <p className="text-3xl font-semibold text-primary">{briefs.length}</p>
               <div className="mt-2 space-y-1">
                 {briefs.slice(0, 2).map((b) => (
                   <Link key={b.id} href={`/briefs/${b.id}`} className="block text-sm hover:underline truncate">

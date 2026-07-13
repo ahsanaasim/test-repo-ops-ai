@@ -38,7 +38,7 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
         )}
       >
         <div className="flex h-14 items-center gap-2 border-b px-4">
-          <Stethoscope className="h-6 w-6 shrink-0 text-primary" style={{ color: "hsl(243 75% 59%)" }} />
+          <Stethoscope className="h-6 w-6 shrink-0 text-primary" />
           {!collapsed && (
             <span className="text-lg font-semibold tracking-tight">RecruitMed</span>
           )}
@@ -57,10 +57,9 @@ export function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: Side
                 className={cn(
                   "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-150",
                   active
-                    ? "bg-indigo-50 text-indigo-700"
+                    ? "bg-primary/10 text-primary"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
-                style={active ? { backgroundColor: "hsl(243 75% 59% / 0.1)", color: "hsl(243 75% 59%)" } : undefined}
                 aria-current={active ? "page" : undefined}
               >
                 <Icon className="h-5 w-5 shrink-0" />
