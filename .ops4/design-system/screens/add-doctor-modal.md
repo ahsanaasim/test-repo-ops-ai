@@ -1,23 +1,19 @@
 # Screen blueprint: Add Doctor Modal
 
 Route: `/doctors/add`
+Purpose: Start new doctor profile via CV upload or manual entry.
 Layout: **single-column-form**
 
 ## Required regions
-- **modal-panel**: Add doctor via CV upload or manual entry, with duplicate detection and error handling — components: UploadCVField, ManualEntryToggle, FirstNameInput, LastNameInput, EmailInput, PhoneInput, SpecialtyInput, LocationInput, AHPRAInput, AvailabilitySelect, UploadProgressBar, DuplicateDetectionBanner, DuplicateResolutionModal, ContinueButton, CancelButton, LoadingSpinner, ErrorMessage, RetryButton, PlanLimitMessage, UpgradePlanButton, PermissionDeniedMessage, InvalidUploadMessage
+- **modal-panel**: Add doctor via CV upload or manual entry, with duplicate detection and error handling
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌───────────────┐
-| [CV/Manual]   |
-| [Fields]      |
-| [Progress]    |
-| [Dup/Error]   |
-| [Continue][Cancel] |
-└───────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
