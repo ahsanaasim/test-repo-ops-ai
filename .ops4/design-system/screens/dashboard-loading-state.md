@@ -1,22 +1,21 @@
 # Screen blueprint: Dashboard Loading State
 
 Route: `/dashboard`
+Purpose: Show while dashboard data loads.
 Layout: **dashboard-grid**
 
 ## Required regions
-- **sidebar**: Navigation and workspace context — components: SidebarNav (role-aware, collapsible)
-- **topbar**: Page title, search, user menu — components: Breadcrumbs, PageTitle, SearchInput, UserAvatarMenu
-- **main**: Dashboard widgets and content — components: ReportingDashboardFilters, PlanLimitBanner, DashboardSkeletonLoaders, DashboardErrorMessage, DashboardRetryButton, PermissionDeniedMessage
+- **sidebar**: Navigation and workspace context
+- **topbar**: Page title, search, user menu
+- **main**: Dashboard widgets and content
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌────sidebar────┬────────────dashboard grid────────────┐
-| [nav]        | [title][search][user]                |
-|              | [skeleton widgets]                   |
-└───────────────┴──────────────────────────────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
