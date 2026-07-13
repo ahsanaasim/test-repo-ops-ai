@@ -1,18 +1,21 @@
 # Screen blueprint: Matching Loading State
 
 Route: `/matching`
+Purpose: Show while AI results load.
 Layout: **two-column-main-rail**
 
 ## Required regions
-- **filters**: Candidate matching filters — components: SpecialtySelect, LocationSelect, AHPRAStatusSelect, AvailabilitySelect
-- **main-panel**: AI results loading skeleton — components: MatchingListSkeleton, LoadingSpinner
+- **main**: Display skeleton cards for candidate matching results
+- **filters**: Show skeletons for filters above results
+- **panel**: Display error, plan, or permission messages
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-| filters | skeleton list |
+| main | context-rail |
 ```
 
 ## Acceptance
