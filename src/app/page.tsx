@@ -1,5 +1,6 @@
 import { Brain, ShieldCheck, Users } from "lucide-react";
 import { LinkButton } from "@/components/ui/link-button";
+import { PlatformLogo } from "@/components/shared/platform-logo";
 
 const features = [
   {
@@ -23,10 +24,14 @@ export default function LandingPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <div className="w-full max-w-md rounded-lg border border-border bg-card p-8 shadow-sm">
+        <div className="flex justify-center mb-6">
+          <PlatformLogo />
+        </div>
+
         <div className="text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">RecruitMed</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">Healthcare recruitment platform</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Healthcare recruitment platform for internal recruiting teams
+            Internal workspace for medical recruiting teams across Australia
           </p>
         </div>
 

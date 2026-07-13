@@ -44,6 +44,33 @@ export interface Brief {
   requirements?: string;
 }
 
+export interface SupportingDocument {
+  name: string;
+  type: string;
+  uploadedAt: string;
+}
+
+export interface ParsedCvField {
+  field: string;
+  value: string;
+  confidence: number;
+  aiExtracted: boolean;
+}
+
+export interface CommunicationLogEntry {
+  id: string;
+  channel: "email" | "sms" | "phone";
+  subject: string;
+  timestamp: string;
+  direction: "inbound" | "outbound";
+}
+
+export interface DoctorProfileMeta {
+  createdBy: string;
+  createdAt: string;
+  lastUpdated: string;
+}
+
 export interface Doctor {
   id: string;
   firstName: string;
@@ -67,6 +94,15 @@ export interface Doctor {
   verificationSource?: string;
   verificationDate?: string;
   verificationNotes?: string;
+  ahpraLastChecked?: string;
+  supportingDocuments?: SupportingDocument[];
+  manualNotes?: string;
+  aiNotesText?: string;
+  cvFileName?: string;
+  cvParsingStatus?: string;
+  parsedCvFields?: ParsedCvField[];
+  profileMeta?: DoctorProfileMeta;
+  communicationLog?: CommunicationLogEntry[];
 }
 
 export interface FollowUp {
@@ -114,6 +150,20 @@ export interface MatchCandidate {
   rationale: string;
   availability?: string;
   yearsExperience?: number;
+  candidateStatus?: string;
+  briefId?: string;
+  email?: string;
+  phone?: string;
+}
+
+export interface OutreachContext {
+  briefId: string;
+  briefTitle: string;
+  client: string;
+  candidateName: string;
+  candidateSpecialty: string;
+  consentStatus: "granted" | "pending" | "revoked";
+  previousContacts: CommunicationLogEntry[];
 }
 
 export interface AuditLogEntry {
@@ -134,4 +184,6 @@ export interface AdminUser {
   role: UserRole;
   status: "active" | "inactive" | "pending";
   lastLogin?: string;
+  inviteSent?: boolean;
+  mfaEnabled?: boolean;
 }

@@ -7,6 +7,7 @@ import type {
   FollowUp,
   MatchCandidate,
   Notification,
+  OutreachContext,
 } from "./types";
 
 export const recruiters = [
@@ -63,7 +64,11 @@ export const briefs: Brief[] = [
     aiMatchConfidence: 91,
     ahpraStatus: "verified",
     roleType: "Consultant",
+    startDate: "2026-10-01",
     employmentType: "Permanent",
+    endDate: "2027-03-31",
+    description: "Private cardiology practice seeking experienced consultant.",
+    requirements: "FRACP, 10+ years post-fellowship experience.",
   },
 ];
 
@@ -86,6 +91,42 @@ export const doctors: Doctor[] = [
     currentEmployer: "Alfred Health",
     verificationSource: "API",
     verificationDate: "2026-06-10",
+    ahpraLastChecked: "2026-07-10",
+    subspecialties: ["Trauma", "Resuscitation"],
+    education: ["MBBS University of Melbourne", "FRACP Emergency Medicine"],
+    verificationNotes: "Verified via AHPRA API with no conditions.",
+    supportingDocuments: [
+      { name: "AHPRA_Certificate.pdf", type: "Verification", uploadedAt: "2026-06-10" },
+    ],
+    manualNotes: "Strong communicator, prefers metro locum roles.",
+    aiNotesText: "8 years EM experience at tertiary hospitals. Available for winter surge locums.",
+    cvFileName: "Hartley_CV_2026.pdf",
+    cvParsingStatus: "parsed",
+    parsedCvFields: [
+      { field: "Specialty", value: "Emergency Medicine", confidence: 98, aiExtracted: true },
+      { field: "AHPRA Number", value: "MED1234567", confidence: 95, aiExtracted: true },
+    ],
+    profileMeta: {
+      createdBy: "Sarah Chen",
+      createdAt: "2026-05-01",
+      lastUpdated: "2026-07-10",
+    },
+    communicationLog: [
+      {
+        id: "cl-1",
+        channel: "email",
+        subject: "EM Role Introduction",
+        timestamp: "2026-07-10T09:00:00Z",
+        direction: "outbound",
+      },
+      {
+        id: "cl-2",
+        channel: "email",
+        subject: "Re: Royal Melbourne opportunity",
+        timestamp: "2026-07-11T14:30:00Z",
+        direction: "inbound",
+      },
+    ],
   },
   {
     id: "doc-2",
@@ -103,6 +144,27 @@ export const doctors: Doctor[] = [
     yearsExperience: 12,
     duplicate: false,
     aiGeneratedNotes: true,
+    subspecialties: ["Rural Health", "Chronic Disease"],
+    education: ["MBBS UNSW", "FRACGP"],
+    manualNotes: "Willing to relocate to rural NSW.",
+    aiNotesText: "Strong rural GP experience, 12 years in regional practice.",
+    cvFileName: "Nguyen_CV_2026.pdf",
+    cvParsingStatus: "parsed",
+    ahpraLastChecked: "2026-07-05",
+    profileMeta: {
+      createdBy: "James Wilson",
+      createdAt: "2026-04-15",
+      lastUpdated: "2026-07-05",
+    },
+    communicationLog: [
+      {
+        id: "cl-3",
+        channel: "sms",
+        subject: "GP role follow-up",
+        timestamp: "2026-07-08T11:00:00Z",
+        direction: "outbound",
+      },
+    ],
   },
   {
     id: "doc-3",
@@ -120,6 +182,16 @@ export const doctors: Doctor[] = [
     yearsExperience: 15,
     verificationSource: "API",
     verificationDate: "2026-07-05",
+    subspecialties: ["Interventional Cardiology"],
+    education: ["MBBS University of Sydney", "FRACP Cardiology"],
+    ahpraLastChecked: "2026-07-05",
+    cvFileName: "Sharma_CV_2026.pdf",
+    cvParsingStatus: "parsed",
+    profileMeta: {
+      createdBy: "Emma Thompson",
+      createdAt: "2026-03-20",
+      lastUpdated: "2026-07-05",
+    },
   },
 ];
 
@@ -180,6 +252,22 @@ export const notifications: Notification[] = [
     read: true,
     relatedUrl: "/doctors/doc-3",
   },
+  {
+    id: "n-4",
+    type: "outreach",
+    content: "Outreach draft saved for Dr. Hartley",
+    timestamp: "2026-07-10T16:00:00Z",
+    read: true,
+    relatedUrl: "/outreach",
+  },
+  {
+    id: "n-5",
+    type: "system",
+    content: "Weekly placement report is ready to view",
+    timestamp: "2026-07-09T08:00:00Z",
+    read: false,
+    relatedUrl: "/reporting",
+  },
 ];
 
 export const activities: ActivityItem[] = [
@@ -211,6 +299,16 @@ export const activities: ActivityItem[] = [
     noteContent: "Strong rural GP experience, willing to relocate.",
     aiGenerated: true,
   },
+  {
+    id: "a-4",
+    type: "status_change",
+    timestamp: "2026-07-08T11:30:00Z",
+    description: "Brief status changed to in progress",
+    performedBy: "James Wilson",
+    linkedCandidate: "David Nguyen",
+    statusChange: "open → in_progress",
+    hasAttachment: true,
+  },
 ];
 
 export const matchCandidates: MatchCandidate[] = [
@@ -224,6 +322,10 @@ export const matchCandidates: MatchCandidate[] = [
     rationale: "Specialty match, location proximity, 8 years EM experience",
     availability: "Aug 2026",
     yearsExperience: 8,
+    candidateStatus: "shortlisted",
+    briefId: "brief-1",
+    email: "amelia.hartley@email.com",
+    phone: "+61 412 345 678",
   },
   {
     id: "doc-2",
@@ -235,6 +337,10 @@ export const matchCandidates: MatchCandidate[] = [
     rationale: "Rural GP experience, location match, availability aligned",
     availability: "Sep 2026",
     yearsExperience: 12,
+    candidateStatus: "active",
+    briefId: "brief-2",
+    email: "david.nguyen@email.com",
+    phone: "+61 423 456 789",
   },
 ];
 
@@ -246,6 +352,8 @@ export const adminUsers: AdminUser[] = [
     role: "recruiter",
     status: "active",
     lastLogin: "2026-07-13T07:30:00Z",
+    inviteSent: false,
+    mfaEnabled: true,
   },
   {
     id: "u-2",
@@ -254,6 +362,8 @@ export const adminUsers: AdminUser[] = [
     role: "admin",
     status: "active",
     lastLogin: "2026-07-12T16:00:00Z",
+    inviteSent: false,
+    mfaEnabled: true,
   },
   {
     id: "u-3",
@@ -262,6 +372,8 @@ export const adminUsers: AdminUser[] = [
     role: "reporting",
     status: "active",
     lastLogin: "2026-07-10T09:00:00Z",
+    inviteSent: true,
+    mfaEnabled: false,
   },
 ];
 
@@ -326,3 +438,28 @@ export const retentionRules = [
     pendingCount: 45,
   },
 ];
+
+export const outreachContext: OutreachContext = {
+  briefId: "brief-1",
+  briefTitle: "Emergency Medicine Registrar - Royal Melbourne",
+  client: "Royal Melbourne Hospital",
+  candidateName: "Dr. Amelia Hartley",
+  candidateSpecialty: "Emergency Medicine",
+  consentStatus: "granted",
+  previousContacts: [
+    {
+      id: "cl-1",
+      channel: "email",
+      subject: "EM Role Introduction",
+      timestamp: "2026-07-10T09:00:00Z",
+      direction: "outbound",
+    },
+    {
+      id: "cl-2",
+      channel: "email",
+      subject: "Re: Royal Melbourne opportunity",
+      timestamp: "2026-07-11T14:30:00Z",
+      direction: "inbound",
+    },
+  ],
+};

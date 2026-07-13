@@ -9,8 +9,8 @@ import { LinkButton } from "@/components/ui/link-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PageStates } from "@/components/shared/page-states";
-import { FilterBar, SelectFilter, DateRangeFilter } from "@/components/shared/filters";
+import { PageStates, PlanLimitBanner } from "@/components/shared/page-states";
+import { FilterBar, MultiSelectFilter, DateRangeFilter } from "@/components/shared/filters";
 import { parsePageState } from "@/lib/page-state";
 import { useUser } from "@/context/user-context";
 import { canExport, shouldMaskData } from "@/lib/permissions";
@@ -42,11 +42,22 @@ function ReportingContent() {
         )}
       </div>
 
+      {state === "plan_limit" && <PlanLimitBanner />}
+
       <FilterBar>
-        <SelectFilter label="Specialty" options={[{ value: "em", label: "Emergency Medicine" }]} />
-        <SelectFilter label="Location" options={[{ value: "vic", label: "Victoria" }]} />
-        <SelectFilter label="Recruiter" options={[{ value: "sarah", label: "Sarah Chen" }]} />
-        <DateRangeFilter label="Date Range" />
+        <MultiSelectFilter
+          label="Specialty"
+          options={[{ value: "em", label: "Emergency Medicine" }, { value: "gp", label: "General Practice" }]}
+        />
+        <MultiSelectFilter
+          label="Location"
+          options={[{ value: "vic", label: "Victoria" }, { value: "nsw", label: "NSW" }]}
+        />
+        <MultiSelectFilter
+          label="Recruiter"
+          options={[{ value: "sarah", label: "Sarah Chen" }, { value: "james", label: "James Wilson" }]}
+        />
+        <DateRangeFilter label="Date range" />
       </FilterBar>
 
       <PageStates state={state} emptyTitle="No reporting data" skeleton={
