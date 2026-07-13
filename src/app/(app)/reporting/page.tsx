@@ -52,9 +52,9 @@ function ReportingContent() {
       <PageStates state={state} emptyTitle="No reporting data" skeleton={
         <div className="grid gap-4 md:grid-cols-4">{Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-28" />)}</div>
       }>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {metrics.map((m) => (
-            <Card key={m.label} className="shadow-sm">
+            <Card key={m.label} size="widget" className="shadow-sm">
               <CardHeader className="pb-2"><CardTitle className="text-sm font-medium text-muted-foreground">{m.label}</CardTitle></CardHeader>
               <CardContent><p className="text-3xl font-semibold text-primary">{m.value}</p></CardContent>
             </Card>
@@ -63,7 +63,7 @@ function ReportingContent() {
 
         <div className="grid gap-6 md:grid-cols-3 mt-6">
           {["Placements by Specialty", "Placements by Location", "Monthly Placements"].map((title) => (
-            <Card key={title} className="shadow-sm">
+            <Card key={title} size="widget" className="shadow-sm">
               <CardHeader><CardTitle className="text-base">{title}</CardTitle></CardHeader>
               <CardContent>
                 <div className="h-40 flex items-end gap-2">

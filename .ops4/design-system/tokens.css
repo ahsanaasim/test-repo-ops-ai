@@ -1,6 +1,6 @@
 /* Aperture Design System — semantic tokens (locked premium SaaS palette) */
 :root {
-  --bg-canvas: #fafafa;
+  --bg-canvas: #ffffff;
   --bg-surface: #ffffff;
   --bg-muted: #f4f4f5;
   --fg-default: hsl(243 75% 59%);

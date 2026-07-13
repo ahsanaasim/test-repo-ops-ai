@@ -57,8 +57,8 @@ function DashboardContent() {
         emptyAction={{ label: "Create Brief", href: "/briefs/add" }}
         skeleton={skeleton}
       >
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card className="shadow-sm">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          <Card size="widget" className="shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <Briefcase className="h-4 w-4 text-primary" /> Assigned Briefs
@@ -76,7 +76,7 @@ function DashboardContent() {
             </CardContent>
           </Card>
 
-          <Card className="shadow-sm">
+          <Card size="widget" className="shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <CalendarClock className="h-4 w-4" /> Open Tasks
@@ -95,7 +95,7 @@ function DashboardContent() {
             </CardContent>
           </Card>
 
-          <Card className="shadow-sm">
+          <Card size="widget" className="shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <Bell className="h-4 w-4" /> Notifications
@@ -107,7 +107,7 @@ function DashboardContent() {
             </CardContent>
           </Card>
 
-          <Card className="shadow-sm">
+          <Card size="widget" className="shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium">Quick Links</CardTitle>
             </CardHeader>
@@ -118,7 +118,7 @@ function DashboardContent() {
           </Card>
         </div>
 
-        <Card className="shadow-sm mt-6">
+        <Card size="widget" className="mt-6 shadow-sm">
           <CardHeader>
             <CardTitle className="text-base font-medium flex items-center gap-2">
               <Activity className="h-4 w-4" /> Recent Activity
