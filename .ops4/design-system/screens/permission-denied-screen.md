@@ -1,26 +1,21 @@
 # Screen blueprint: Permission Denied Screen
 
 Route: `/forbidden`
+Purpose: Show when user tries to access unauthorized area.
 Layout: **single-column-form**
 
 ## Required regions
-- **header**: Branded error headline — components: PermissionDeniedHeadline
-- **panel**: Error description and guidance — components: PermissionDeniedDescription, PlanLimitMessage, ErrorMessage, LoadingSpinner
-- **footer**: Action buttons for navigation/support — components: ReturnToDashboardButton, ContactSupportLink
+- **header**: Branded error headline
+- **panel**: Error description and guidance
+- **footer**: Action buttons for navigation/support
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-┌───────────────┐
-| [Denied Head] |
-| [Desc/Msg]    |
-| [Plan/Error]  |
-| [Spinner]     |
-|───────────────|
-| [Return][Help]|
-└───────────────┘
+| main | context-rail |
 ```
 
 ## Acceptance
