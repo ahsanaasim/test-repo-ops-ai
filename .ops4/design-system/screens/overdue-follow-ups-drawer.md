@@ -1,18 +1,21 @@
 # Screen blueprint: Overdue Follow-Ups Drawer
 
 Route: `/follow-ups/overdue`
-Layout: **drawer**
+Purpose: Show list of overdue follow-ups.
+Layout: **drawer-main**
 
 ## Required regions
-- **drawer-header**: Drawer title and close — components: DrawerTitle, DrawerCloseButton
-- **drawer-content**: List of overdue follow-ups with quick actions — components: OverdueFollowUpList, MarkCompleteAction, RescheduleAction, ContactAssigneeAction
+- **drawer-header**: Drawer title and close action
+- **drawer-filters**: Filter overdue follow-ups by assignee and priority
+- **drawer-content**: Main content: table of overdue follow-ups or state messages
 
 ## Forbidden collapses
-- Do not collapse this screen into a single Card with a basic form.
+- Do not implement this screen as a single Card containing only a basic form.
+- Do not omit the context-rail when related entities or history exist in the product.
 
 ## ASCII wireframe
 ```
-| main | overdue drawer |
+| main | context-rail |
 ```
 
 ## Acceptance
