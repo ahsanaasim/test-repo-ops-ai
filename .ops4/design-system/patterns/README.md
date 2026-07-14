@@ -1,13 +1,15 @@
 # Design Pattern Brain briefs
 
-Retrieved composition patterns for layout taste. Secondary to locked build prompt and screen blueprints. Do not copy proprietary branding.
+Retrieved composition patterns — REQUIRED for matching screen types (esp. auth/register/login). Apply structure/spacing/hierarchy; keep product brand tokens. Do not copy proprietary branding.
 
 - [Centered authentication card](./pattern-1-authentication.md)
 - [Centered authentication card](./pattern-2-authentication.md)
 
-## Design Pattern Brief (retrieved — inspire composition; do NOT copy branding or proprietary content)
-Use these patterns for layout taste, hierarchy, spacing rhythm, and reading flow.
-Keep the locked product design system tokens. Adapt regions to this product's tasks.
+## Design Pattern Brain (retrieved — apply composition to in-scope screens)
+These patterns are approved visual-memory references.
+APPLY their composition archetype, reading flow, density, hierarchy, spacing rhythm, type scale, and surface strategy to screens in this change.
+KEEP this product's brand tokens (logo, primary brand color, locked Figma/product colors) — do not clone proprietary branding/copy from the reference product.
+If a retrieved pattern is a centered auth/register card and the current screen is a heavier multi-panel auth layout, RESHAPE the auth/register screen to match the pattern archetype.
 
 ### Pattern 1: Centered authentication card
 - Screen type: authentication
@@ -18,7 +20,26 @@ Keep the locked product design system tokens. Adapt regions to this product's ta
 - Symmetry: symmetric
 - Primary focal point: form-title and fields
 - Secondary focal points: brand-logo, primary action button
-- Spacing rhythm: page 32 / section 24 / card 16
+- Spacing rhythm: page 32 / section 24 / card 16 / base 4
+- Typography:
+  - Page title: 28px / weight 600 / lh 34
+  - Section title: 20px / weight 600 / lh 28
+  - Body: 16px / weight 400 / lh 24
+- Surfaces: canvas neutral; cards primary; borders subtle; shadows minimal
+- Color roles (adapt roles; keep product brand hues):
+  - canvas: #F8FAFC (page background)
+  - surface: #FFFFFF (auth card)
+  - border: #E2E8F0 (card border)
+  - text-primary: #0F172A (titles / body)
+  - text-muted: #64748B (meta / secondary)
+  - accent: #2563EB (links / primary actions)
+- Fonts:
+  - Inter · ui · weights 400, 500, 600
+- Radii:
+  - lg: 32px
+  - md: 24px
+  - sm: 8px
+  - pill: 999px
 - Components: form-field (secondary), checkbox (secondary), button-primary (secondary), link-secondary (secondary)
 - Interactions: form-validation, disabled-primary-action, show-hide-password
 - Why it works: Centering and whitespace create a calm, focused entry point for authentication. Single-column, minimal distractions, and clear hierarchy reduce cognitive load and error risk. Card elevation and rounded corners reinforce separation from background and draw attention.
@@ -33,7 +54,12 @@ Keep the locked product design system tokens. Adapt regions to this product's ta
 - Symmetry: symmetric
 - Primary focal point: authentication-card
 - Secondary focal points: form-fields, primary-action
-- Spacing rhythm: page 32 / section 24 / card 16
+- Spacing rhythm: page 32 / section 24 / card 16 / base 4
+- Typography:
+  - Page title: 24px / weight 700 / lh 32
+  - Section title: 16px / weight 600 / lh 24
+  - Body: 14px / weight 400 / lh 20
+- Surfaces: canvas neutral; cards primary; borders subtle; shadows minimal
 - Components: form-field (secondary), primary-action (secondary), secondary-action (secondary)
 - Interactions: form-validation, disabled-primary-action, show-hide-password
 - Why it works: Centering and card containment reduce cognitive load and focus attention on the authentication task. Single-column layout is optimal for short forms and improves accessibility. Clear separation of primary and secondary actions prevents accidental navigation.
